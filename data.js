@@ -1,6 +1,7 @@
 const QUESTION_BANK = [
   {
-    id: "q1",
+    id: "b1-q001",
+    bank: "Bank 1",
     domain: "Domain 4.0 – Security Operations",
     domain_fa: "دامنه ۴: عملیات امنیت",
     question: "You are a security analyst tasked with investigating a suspected security breach incident. You decide to examine the firewall logs. Which of the following pieces of information would be MOST valuable in this firewall log to investigate the incident?",

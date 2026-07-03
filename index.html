@@ -7,54 +7,72 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
   <div class="app">
-    <header class="topbar">
+    <header class="hero">
       <div>
+        <div class="eyebrow">Security+ Question Bank • Leitner System</div>
         <h1>Security+ Master</h1>
-        <p>Smart Flashcards • Leitner • Practice Exams</p>
+        <p>Smart bilingual flashcards for CompTIA Security+ practice.</p>
       </div>
-      <button id="resetBtn" class="ghost">Reset Progress</button>
+      <div class="hero-actions">
+        <button id="resetBtn" class="ghost">Reset Progress</button>
+      </div>
     </header>
+
+    <section class="control-panel">
+      <label>
+        <span>Bank</span>
+        <select id="bankSelect"></select>
+      </label>
+      <label>
+        <span>Language</span>
+        <select id="languageSelect">
+          <option value="en">English</option>
+          <option value="fa">فارسی</option>
+          <option value="bi">Bilingual</option>
+        </select>
+      </label>
+      <label>
+        <span>Mode</span>
+        <select id="studyMode">
+          <option value="leitner">Leitner Review</option>
+          <option value="random">Random Practice</option>
+        </select>
+      </label>
+    </section>
 
     <section class="stats" id="stats"></section>
 
+    <section class="leitner-visual" aria-label="Leitner boxes">
+      <div class="box3d box1"><b>1</b><span>New / Review</span></div>
+      <div class="box3d box2"><b>2</b><span>Learning</span></div>
+      <div class="box3d box3"><b>3</b><span>Good</span></div>
+      <div class="box3d box4"><b>4</b><span>Strong</span></div>
+      <div class="box3d box5"><b>5</b><span>Mastered</span></div>
+    </section>
+
     <main class="card" id="card">
+      <div id="feedback" class="feedback hidden"></div>
+
       <div class="meta">
-        <span id="counter">Question 1</span>
-        <span id="domain">Domain 4.0 – Security Operations</span>
+        <span id="counter">Question</span>
+        <span id="domain">Domain</span>
       </div>
 
-      <section class="block">
-        <h2>English Question</h2>
-        <p id="questionEn"></p>
-        <button class="speaker" data-read="questionEn">🔊 Listen</button>
-      </section>
-
-      <section class="block rtl hidden" id="faQuestionBlock">
-        <h2>سؤال فارسی</h2>
-        <p id="questionFa"></p>
-        <button class="speaker" data-read="questionFa" data-lang="fa-IR">🔊 پخش فارسی</button>
-      </section>
-      <button id="toggleFaQuestion" class="secondary">Show Persian Translation</button>
-
+      <section class="question-block" id="questionBlock"></section>
       <section class="choices" id="choices"></section>
 
-      <button id="toggleFaChoices" class="secondary">Show Persian Choices</button>
       <button id="showAnswer" class="primary">Show Answer & Explanation</button>
 
       <section class="answer hidden" id="answerBlock">
         <h2>Correct Answer</h2>
-        <p id="correctAnswer"></p>
+        <div id="correctAnswer"></div>
 
         <h2>Overall Explanation</h2>
-        <p id="explanationEn"></p>
-        <button class="speaker" data-read="explanationEn">🔊 Listen</button>
-
-        <div class="rtl persian-box">
-          <h2>توضیح فارسی</h2>
-          <p id="explanationFa"></p>
-          <button class="speaker" data-read="explanationFa" data-lang="fa-IR">🔊 پخش فارسی</button>
-        </div>
+        <div id="explanationBlock"></div>
 
         <div class="leitner-actions">
           <button id="wrongBtn" class="danger">Need Review / غلط زدم</button>
