@@ -1,1 +1,8 @@
-body{font-family:Arial,sans-serif;background:#0f172a;color:#fff;padding:30px}.card{max-width:900px;margin:auto;background:#1e293bcc;padding:24px;border-radius:18px}.grid,.banks{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}.bank,button{background:#334155;color:#fff;border:none;border-radius:12px;padding:18px;text-align:center}
+body{margin:0;background:#0f172a;color:#fff;font-family:Arial,sans-serif}
+.container{max-width:900px;margin:auto;padding:20px}
+.card,.tile{background:#1e293bcc;border-radius:16px;padding:18px;margin:12px 0}
+.opt{display:block;width:100%;margin:10px 0;padding:14px;border:none;border-radius:10px;background:#334155;color:white}
+.actions{display:flex;gap:10px;justify-content:space-between}
+.actions button{padding:12px 18px;border:none;border-radius:10px}
+.progress{height:10px;background:#334155;border-radius:10px}.progress #bar{width:1%;height:100%;background:#22c55e;border-radius:10px}
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}

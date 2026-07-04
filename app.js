@@ -1,1 +1,3 @@
-console.log('v0.1');
+let q=1;document.getElementById('next').onclick=()=>{q++;document.getElementById('qnum').textContent=q;document.getElementById('bar').style.width=(q/90*100)+'%';};
+document.getElementById('prev').onclick=()=>{if(q>1){q--;document.getElementById('qnum').textContent=q;document.getElementById('bar').style.width=(q/90*100)+'%';}};
+document.getElementById('submit').onclick=()=>alert('Answer checking will be added in v0.3');
