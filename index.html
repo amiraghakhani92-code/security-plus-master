@@ -1,28 +1,97 @@
-<!doctype html><html><head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Security+ Master v0.2</title>
-<link rel='stylesheet' href='style.css'></head>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5b9bff">
+<title>آموزش Security+ SY0-701</title>
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
-<div class='container'>
-<header><h1>🛡️ Security+ Master</h1><div class='progress'><div id='bar'></div></div><p>Question <span id='qnum'>1</span> / 90</p></header>
-<div class='card'>
-<h2 id='question'>Sample Question Placeholder</h2>
-<button class='opt'>Option A</button>
-<button class='opt'>Option B</button>
-<button class='opt'>Option C</button>
-<button class='opt'>Option D</button>
-<div class='actions'>
-<button id='prev'>Previous</button>
-<button id='submit'>Submit</button>
-<button id='next'>Next</button>
+<div class="bg-orbs" id="bgOrbs"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+<div class="lang-menu-wrap">
+  <button class="lang-toggle" onclick="toggleLangMenu()" id="langToggle">🌐 زبان‌ها</button>
+  <div class="lang-dropdown hidden" id="langDropdown">
+    <div class="lang-opt" onclick="setLang('fa')">فارسی</div>
+    <div class="lang-opt" onclick="setLang('en')">English</div>
+    <div class="lang-opt" onclick="setLang('both')">دو زبانه (هر دو)</div>
+  </div>
 </div>
+<div class="font-control">
+  <button onclick="changeFont(-1)" title="کوچک‌تر">A−</button>
+  <button onclick="changeFont(1)" title="بزرگ‌تر">A+</button>
 </div>
-<section class='dash'>
-<div class='tile'>Accuracy<br><b>0%</b></div>
-<div class='tile'>Correct<br><b>0</b></div>
-<div class='tile'>Wrong<br><b>0</b></div>
-<div class='tile'>Leitner<br><b>Box 1</b></div>
-</section>
+<div class="app">
+  <header>
+    <h1>Security+ SY0-701</h1>
+    <p id="headerSub">آموزش و فلش‌کارت دو زبانه — سیستم Leitner</p>
+  </header>
+
+  <!-- HOME VIEW -->
+  <div id="homeView">
+    <div class="progress-global"><div id="globalProgress"></div></div>
+    <div class="stat-row">
+      <div class="stat-box"><div class="v" id="statTotal">0</div><div class="l">سوالات</div></div>
+      <div class="stat-box"><div class="v" id="statMastered">0</div><div class="l">تسلط</div></div>
+      <div class="stat-box"><div class="v" id="statAccuracy">0%</div><div class="l">دقت</div></div>
+    </div>
+    <div class="theme-row">
+      <span class="theme-label">🎨 تم:</span>
+      <button class="theme-dot t-default" onclick="setTheme('')" title="آبی"></button>
+      <button class="theme-dot t-emerald" onclick="setTheme('emerald')" title="زمردی"></button>
+      <button class="theme-dot t-sunset" onclick="setTheme('sunset')" title="غروب"></button>
+      <button class="theme-dot t-purple" onclick="setTheme('purple')" title="بنفش"></button>
+      <button class="theme-dot t-crimson" onclick="setTheme('crimson')" title="قرمز"></button>
+      <button class="theme-dot t-light" onclick="setTheme('light')" title="روشن"></button>
+      <button class="anim-toggle" id="animToggle" onclick="toggleAnimations()">✨ انیمیشن: روشن</button>
+    </div>
+    <div class="theme-row">
+      <span class="theme-label">🧊 طرح:</span>
+      <button class="ui-style-btn" onclick="setUIStyle('')">استاندارد</button>
+      <button class="ui-style-btn" onclick="setUIStyle('glass')">شیشه‌ای</button>
+      <button class="ui-style-btn" onclick="setUIStyle('neon')">نئون</button>
+      <button class="ui-style-btn" onclick="setUIStyle('elevated')">برجسته</button>
+      <button class="ui-style-btn" onclick="setUIStyle('flat')">تخت</button>
+    </div>
+    <div class="domains" id="domainsList"></div>
+  </div>
+
+  <!-- DOMAIN VIEW -->
+  <div id="domainView" class="hidden">
+    <button class="back-btn" onclick="goHome()">→ بازگشت</button>
+    <h2 id="domainTitle" style="font-size:17px; margin-bottom:4px;"></h2>
+    <p id="domainTitleEn" style="color:var(--muted); font-size:12px; direction:ltr; text-align:right; margin-bottom:16px;"></p>
+    <div class="mode-tabs">
+      <div class="mode-tab active" id="tabLearn" onclick="switchMode('learn')">
+        <div class="icon">📚</div><div class="label">آموزش</div><div class="label-en">Learn</div>
+      </div>
+      <div class="mode-tab" id="tabLeitner" onclick="switchMode('leitner')">
+        <div class="icon">🧪</div><div class="label">فلش‌کارت</div><div class="label-en">Leitner</div>
+      </div>
+      <div class="mode-tab" id="tabAcronyms" onclick="switchMode('acronyms')">
+        <div class="icon">🔤</div><div class="label">مخفف‌ها</div><div class="label-en">Acronyms</div>
+      </div>
+    </div>
+    <div id="learnContent"></div>
+    <div id="leitnerContent" class="hidden"></div>
+    <div id="acronymsContent" class="hidden"></div>
+  </div>
+
+  <!-- EXAM VIEW -->
+  <div id="examView" class="hidden"></div>
 </div>
-<script src='app.js'></script>
-</body></html>
+
+<div class="bottom-nav">
+  <button class="active" id="navHome" onclick="goHome()"><span class="icon">🏠</span>خانه</button>
+  <button id="navExam" onclick="showExamHub()"><span class="icon">📝</span>امتحان</button>
+  <button id="navStats" onclick="showStats()"><span class="icon">📊</span>آمار</button>
+  <button id="navReset" onclick="resetAll()"><span class="icon">🔄</span>بازنشانی</button>
+</div>
+
+<!-- داده‌ها (اینجا محتوا را ویرایش کنید) / Data files (edit content here) -->
+<script src="data/questions.js"></script>
+<script src="data/lessons.js"></script>
+<!-- منطق برنامه / App logic -->
+<script src="app.js"></script>
+</body>
+</html>
